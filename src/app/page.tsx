@@ -171,20 +171,4 @@ export default function Home() {
   );
 }
 
-const features = [
-  {
-    title: "Find Events",
-    description: "Discover beach cleanup events near you and join the community.",
-    icon: "/window.svg",
-  },
-  {
-    title: "Track Weather",
-    description: "Get real-time weather updates for perfect cleanup conditions.",
-    icon: "/file.svg",
-  },
-  {
-    title: "Make Impact",
-    description: "Track your contribution and see the collective difference we make.",
-    icon: "/vercel.svg",
-  },
-];
+

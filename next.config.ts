@@ -5,11 +5,10 @@ const isProd = process.env.NODE_ENV === 'production';
 const nextConfig: NextConfig = {
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
   reactStrictMode: true,
-  swcMinify: true,
   output: 'export',
-  basePath: isProd ? '/ShoreSquad' : '',
+  basePath: isProd ? '/c240-shoresquad' : '',
   images: {
-    unoptimized: true,
+    unoptimized: true
   }
 };
 
