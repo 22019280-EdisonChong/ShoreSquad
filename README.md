@@ -1,106 +1,20 @@
-# ShoreSquad - Beach Cleanup Community Platform
-
-ShoreSquad is a web application that helps organize and coordinate beach cleanup activities in Singapore. It features real-time weather updates, event management, and interactive location mapping to make beach cleanup initiatives more accessible and organized.
-
-## Features
-
-- 🌤️ Real-time weather forecasts from data.gov.sg
-- 🗺️ Interactive cleanup location mapping
-- 📅 Event scheduling and management
-- 👥 Community engagement tools
-- 📱 Responsive design for all devices
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
 
-### Prerequisites
+First, run the development server:
 
-- Node.js 18.x or later
-- npm (comes with Node.js)
-- A modern web browser
-
-### Installation
-
-1. Clone the repository:
-```bash
-git clone https://github.com/yourusername/shoresquad.git
-cd shoresquad
-```
-
-2. Install dependencies:
-```bash
-npm install
-```
-
-3. Create a `.env.local` file in the root directory and add your API keys:
-```env
-NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=your_google_maps_api_key
-```
-
-4. Start the development server:
 ```bash
 npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-5. Open [http://localhost:3000](http://localhost:3000) with your browser to see the application.
-
-### Weather API Integration
-
-The application uses Singapore's data.gov.sg API for weather forecasts. The weather component includes:
-
-- 4-day weather forecast
-- Temperature, humidity, and wind information
-- Auto-refresh every 30 minutes
-- Error handling with automatic retries
-- Responsive design for all screen sizes
-
-## Deployment
-
-### GitHub Pages
-
-1. First, ensure you have created a GitHub repository and pushed your code:
-```bash
-git remote add origin https://github.com/yourusername/c240-shoresquad.git
-git push -u origin main
-```
-
-2. Enable GitHub Pages:
-   - Go to your repository settings
-   - Navigate to "Pages"
-   - Select "GitHub Actions" as the source
-   - Save the changes
-
-3. Deploy using the provided script:
-```powershell
-./deploy.ps1
-```
-
-The site will be available at: `https://yourusername.github.io/c240-shoresquad/`
-
-### Manual Deployment
-
-You can also build and deploy manually:
-
-1. Build the project:
-```bash
-npm run build
-```
-
-2. The output will be in the `out` directory
-3. Deploy the contents of `out` to your web server
-
-## Troubleshooting
-
-### Common Issues
-
-1. Weather API errors:
-   - Check your internet connection
-   - Verify API endpoint status at data.gov.sg
-   - Check browser console for specific error messages
-
-2. Display issues:
-   - Clear browser cache
-   - Ensure all dependencies are installed
-   - Check browser compatibility
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
