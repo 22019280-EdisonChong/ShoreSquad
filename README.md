@@ -53,6 +53,55 @@ The application uses Singapore's data.gov.sg API for weather forecasts. The weat
 - Error handling with automatic retries
 - Responsive design for all screen sizes
 
+## Deployment
+
+### GitHub Pages
+
+1. First, ensure you have created a GitHub repository and pushed your code:
+```bash
+git remote add origin https://github.com/yourusername/c240-shoresquad.git
+git push -u origin main
+```
+
+2. Enable GitHub Pages:
+   - Go to your repository settings
+   - Navigate to "Pages"
+   - Select "GitHub Actions" as the source
+   - Save the changes
+
+3. Deploy using the provided script:
+```powershell
+./deploy.ps1
+```
+
+The site will be available at: `https://yourusername.github.io/c240-shoresquad/`
+
+### Manual Deployment
+
+You can also build and deploy manually:
+
+1. Build the project:
+```bash
+npm run build
+```
+
+2. The output will be in the `out` directory
+3. Deploy the contents of `out` to your web server
+
+## Troubleshooting
+
+### Common Issues
+
+1. Weather API errors:
+   - Check your internet connection
+   - Verify API endpoint status at data.gov.sg
+   - Check browser console for specific error messages
+
+2. Display issues:
+   - Clear browser cache
+   - Ensure all dependencies are installed
+   - Check browser compatibility
+
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.

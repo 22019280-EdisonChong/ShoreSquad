@@ -50,85 +50,81 @@ export default function WeatherForecast() {
   const [weatherData, setWeatherData] = useState<WeatherResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [retryCount, setRetryCount] = useState(0);
-  const MAX_RETRIES = 3;
-
-  const fetchWeatherData = async () => {
-    try {
-      const today = new Date();
-      const formattedDate = today.toISOString().split('T')[0];
-      
-      const apiUrl = `/api/weather?date=${formattedDate}`;
-      console.log('Fetching weather data from:', apiUrl);
-      
-      const response = await fetch(apiUrl);
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.error || `HTTP error! status: ${response.status}`);
-      }
-
-      if (!data || !data.items || data.items.length === 0) {
-        throw new Error('No weather data available');
-      }
-
-      const transformedData: WeatherResponse = {
-        code: 1,
-        errorMsg: null,
-        data: {
-          records: [{
-            date: formattedDate,
-            updatedTimestamp: new Date().toISOString(),
-            timestamp: new Date().toISOString(),
-            forecasts: data.items[0].forecasts.map((f: any) => ({
-              timestamp: f.date,
-              temperature: {
-                low: f.temperature.low,
-                high: f.temperature.high,
-                unit: 'Degrees Celsius'
-              },
-              relativeHumidity: {
-                low: f.relative_humidity.low,
-                high: f.relative_humidity.high,
-                unit: 'Percentage'
-              },
-              forecast: {
-                summary: f.forecast,
-                code: '',
-                text: f.forecast
-              },
-              day: new Date(f.date).toLocaleDateString('en-US', { weekday: 'long' }),
-              wind: {
-                speed: {
-                  low: f.wind.speed.low,
-                  high: f.wind.speed.high
-                },
-                direction: f.wind.direction
-              }
-            }))
-          }]
-        }
-      };
-
-      setWeatherData(transformedData);
-      setError(null);
-      setRetryCount(0);
-    } catch (err) {
-      console.error('Error fetching weather data:', err);
-      setError(err instanceof Error ? err.message : 'Failed to fetch weather data');
-      
-      // Implement retry logic
-      if (retryCount < MAX_RETRIES) {
-        console.log(`Retrying fetch (${retryCount + 1}/${MAX_RETRIES})...`);
-        setRetryCount(prev => prev + 1);
-        setTimeout(fetchWeatherData, 2000 * (retryCount + 1)); // Exponential backoff
-      }
-    } finally {
-      setLoading(false);
-    }
-  };
 
   useEffect(() => {
+    async function fetchWeatherData() {
+      try {
+        const today = new Date();
+        const formattedDate = today.toISOString().split('T')[0];
+        
+        const apiUrl = `/api/weather?date=${formattedDate}`;
+        console.log('Fetching weather data from:', apiUrl);
+        
+        const response = await fetch(apiUrl);
+
+        if (!response.ok) {
+          console.error('API Response not OK:', {
+            status: response.status,
+            statusText: response.statusText
+          });
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log('Weather API response:', data);
+
+        if (!data || !data.items || data.items.length === 0) {
+          throw new Error('Invalid data format received from API');
+        }
+
+        const transformedData: WeatherResponse = {
+          code: 1,
+          errorMsg: null,
+          data: {
+            records: [{
+              date: formattedDate,
+              updatedTimestamp: new Date().toISOString(),
+              timestamp: new Date().toISOString(),
+              forecasts: data.items[0].forecasts.map((f: any) => ({
+                timestamp: f.date,
+                temperature: {
+                  low: f.temperature.low,
+                  high: f.temperature.high,
+                  unit: 'Degrees Celsius'
+                },
+                relativeHumidity: {
+                  low: f.relative_humidity.low,
+                  high: f.relative_humidity.high,
+                  unit: 'Percentage'
+                },
+                forecast: {
+                  summary: f.forecast,
+                  code: '',
+                  text: f.forecast
+                },
+                day: new Date(f.date).toLocaleDateString('en-US', { weekday: 'long' }),
+                wind: {
+                  speed: {
+                    low: f.wind.speed.low,
+                    high: f.wind.speed.high
+                  },
+                  direction: f.wind.direction
+                }
+              }))
+            }]
+          }
+        };
+
+        setWeatherData(transformedData);
+        setError(null);
+      } catch (err) {
+        console.error('Error fetching weather data:', err);
+        setError(err instanceof Error ? err.message : 'Failed to fetch weather data');
+      } finally {
+        setLoading(false);
+      }
+    }
+
     fetchWeatherData();
 
     // Refresh weather data every 30 minutes
@@ -138,39 +134,18 @@ export default function WeatherForecast() {
 
   if (loading) {
     return (
-      <div className="weather-section-container min-h-[200px] flex items-center justify-center">
-        <div className="text-center">
-          <i className="fas fa-spinner fa-spin text-ocean-blue text-3xl mb-3"></i>
-          <p className="text-gray-600">Loading weather forecast...</p>
-          {retryCount > 0 && (
-            <p className="text-sm text-gray-500 mt-2">
-              Retry attempt {retryCount}/{MAX_RETRIES}...
-            </p>
-          )}
-        </div>
+      <div className="text-center p-4">
+        <i className="fas fa-spinner fa-spin text-ocean-blue text-2xl"></i>
+        <p className="text-gray-600 mt-2">Loading weather forecast...</p>
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="weather-section-container min-h-[200px] flex items-center justify-center">
-        <div className="text-center p-6 bg-red-50 rounded-lg max-w-md">
-          <i className="fas fa-exclamation-circle text-red-500 text-3xl mb-3"></i>
-          <h3 className="text-red-700 font-semibold mb-2">Weather Data Unavailable</h3>
-          <p className="text-red-600 mb-4">{error}</p>
-          <button 
-            onClick={() => {
-              setLoading(true);
-              setRetryCount(0);
-              fetchWeatherData();
-            }}
-            className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition-colors"
-          >
-            <i className="fas fa-sync-alt mr-2"></i>
-            Try Again
-          </button>
-        </div>
+      <div className="text-center p-4 text-red-500">
+        <i className="fas fa-exclamation-circle mr-2"></i>
+        {error}
       </div>
     );
   }
