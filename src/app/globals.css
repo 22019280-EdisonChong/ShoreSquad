@@ -1,8 +1,18 @@
 @import "tailwindcss";
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-ocean-blue: #1E88E5;
+  --color-sand: #F4D03F;
+  --color-coral: #FF7F50;
+  --color-navy: #1A237E;
+  --color-bg-light: #F8F9FA;
+  
+  --background: var(--color-bg-light);
+  --foreground: var(--color-navy);
 }
 
 @theme inline {
@@ -10,6 +20,30 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-ocean-blue text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition-all;
+  }
+  
+  .btn-secondary {
+    @apply bg-sand text-navy px-4 py-2 rounded-lg hover:bg-opacity-90 transition-all;
+  }
+  
+  .card {
+    @apply bg-white p-6 rounded-xl shadow-lg;
+  }
+  
+  .section-title {
+    @apply text-2xl font-bold text-navy mb-4;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
