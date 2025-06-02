@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
   reactStrictMode: true,
   output: 'export',
-  basePath: isProd ? '/c240-shoresquad' : '',
+  basePath: isProd ? '/ShoreSquad' : '',
   images: {
     unoptimized: true
   }
