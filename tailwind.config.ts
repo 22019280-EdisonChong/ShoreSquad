@@ -9,17 +9,21 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        'ocean-blue': '#1E88E5',
-        'sand': '#F4D03F',
-        'coral': '#FF7F50',
-        'navy': '#1A237E',
-        'bg-light': '#F8F9FA',
-        background: 'var(--background)',
-        foreground: 'var(--foreground)',
+        'ocean-blue': '#4BB4DE',
+        'sand': '#F7E9C3',
+        'coral': '#FF8C69',
+        'navy': '#235789',
+        'bg-light': '#FFF9F2',
+        'sunset': '#FF7B54',
+        'seafoam': '#A8E6CF',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      },
+      boxShadow: {
+        'soft': '0 2px 10px rgba(0, 0, 0, 0.05)',
+        'soft-lg': '0 4px 20px rgba(0, 0, 0, 0.08)',
       },
     },
   },

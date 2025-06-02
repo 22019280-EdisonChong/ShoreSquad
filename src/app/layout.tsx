@@ -21,35 +21,45 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+          integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+          crossOrigin="anonymous"
+          referrerPolicy="no-referrer"
+        />
+        <script
+          src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"
+          integrity="sha512-uKQ39gEGiyUJl4AI6L+ekBdGKpGw4xJ55+xyJG7YFlJokPNYegn9KwQ3P8A7aFQAUtUsAQHep+d/lrGqrbPIDQ=="
+          crossOrigin="anonymous"
+          referrerPolicy="no-referrer"
+        ></script>
+      </head>
       <body className={inter.className}>
         <header className="bg-white shadow-sm">
-          <nav className="container mx-auto px-4 py-4">
-            <div className="flex items-center justify-between">
-              <Link href="/" className="text-2xl font-bold text-ocean-blue">
-                ShoreSquad
-              </Link>
-              <div className="hidden md:flex space-x-8">
-                <Link
-                  href="/events"
-                  className="text-navy hover:text-ocean-blue"
-                >
-                  Events
-                </Link>
-                <Link href="/map" className="text-navy hover:text-ocean-blue">
-                  Map
-                </Link>
-                <Link
-                  href="/weather"
-                  className="text-navy hover:text-ocean-blue"
-                >
-                  Weather
-                </Link>
-                <Link href="/about" className="text-navy hover:text-ocean-blue">
-                  About
-                </Link>
-              </div>
-              <button className="btn-primary">Join Now</button>
+          <nav className="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div className="text-2xl font-bold text-blue-600">
+              <i className="fas fa-water mr-2"></i>
+              ShoreSquad
             </div>
+            <div className="hidden md:flex space-x-8">
+              <Link href="/events" className="text-navy hover:text-ocean-blue">
+                <i className="far fa-calendar-alt mr-2"></i>Events
+              </Link>
+              <Link href="/map" className="text-navy hover:text-ocean-blue">
+                <i className="fas fa-map-marker-alt mr-2"></i>Map
+              </Link>
+              <Link href="/weather" className="text-navy hover:text-ocean-blue">
+                <i className="fas fa-cloud-sun mr-2"></i>Weather
+              </Link>
+              <Link href="/about" className="text-navy hover:text-ocean-blue">
+                <i className="fas fa-info-circle mr-2"></i>About
+              </Link>
+            </div>
+            <button className="btn-primary">
+              <i className="fas fa-user-plus mr-2"></i>Join Now
+            </button>
           </nav>
         </header>
 
@@ -123,7 +133,18 @@ export default function RootLayout({
                 <h4 className="font-semibold mb-4">Connect</h4>
                 <p className="text-gray-300 mb-2">Join our community</p>
                 <div className="flex space-x-4">
-                  {/* Add social media icons/links here */}
+                  <a href="#" className="text-gray-300 hover:text-white text-2xl">
+                    <i className="fab fa-twitter"></i>
+                  </a>
+                  <a href="#" className="text-gray-300 hover:text-white text-2xl">
+                    <i className="fab fa-facebook"></i>
+                  </a>
+                  <a href="#" className="text-gray-300 hover:text-white text-2xl">
+                    <i className="fab fa-instagram"></i>
+                  </a>
+                  <a href="#" className="text-gray-300 hover:text-white text-2xl">
+                    <i className="fab fa-github"></i>
+                  </a>
                 </div>
               </div>
             </div>
