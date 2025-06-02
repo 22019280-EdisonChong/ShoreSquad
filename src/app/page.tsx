@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import WeatherForecast from './components/WeatherForecast';
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
               alt="ShoreSquad Logo"
               width={32}
               height={32}
+              style={{ width: 'auto', height: '32px' }}
               className="logo-img mr-2"
             />
             ShoreSquad
@@ -76,6 +78,19 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Weather Forecast Section */}
+      <section className="py-16 bg-bg-light">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-8 text-navy">
+            <i className="fas fa-cloud-sun text-coral mr-2"></i>
+            Weather Forecast
+          </h2>
+          <div className="max-w-6xl mx-auto">
+            <WeatherForecast />
+          </div>
+        </div>
+      </section>
+
       {/* How ShoreSquad Works Section */}
       <section className="how-it-works py-16 bg-bg-light">
         <div className="container mx-auto px-4">
@@ -96,6 +111,33 @@ export default function Home() {
               <h3 className="text-xl font-semibold mb-2">Explore Locations</h3>
               <p className="text-gray-600">Find the nearest beaches that need your help.</p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Next Cleanup Map Section */}
+      <section className="map-section py-16 bg-white" id="next-cleanup-map">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-4 text-navy">
+            <i className="fas fa-map-marker-alt text-coral mr-2"></i>
+            Next Cleanup Location: Pasir Ris
+          </h2>
+          <p className="text-center text-gray-600 mb-8">
+            Join us at Street View Asia (Coordinates: 1.381497, 103.955574).<br />
+            The pin on the map below indicates the meeting point.
+          </p>
+          <div className="map-container rounded-lg overflow-hidden shadow-lg">
+            <iframe
+              src="https://www.google.com/maps/embed/v1/place?q=1.381497,103.955574&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"
+              width="100%"
+              height="450"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Google Map of Next Cleanup Location"
+              className="w-full"
+            />
           </div>
         </div>
       </section>

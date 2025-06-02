@@ -1,20 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ShoreSquad - Beach Cleanup Community Platform
+
+ShoreSquad is a web application that helps organize and coordinate beach cleanup activities in Singapore. It features real-time weather updates, event management, and interactive location mapping to make beach cleanup initiatives more accessible and organized.
+
+## Features
+
+- 🌤️ Real-time weather forecasts from data.gov.sg
+- 🗺️ Interactive cleanup location mapping
+- 📅 Event scheduling and management
+- 👥 Community engagement tools
+- 📱 Responsive design for all devices
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
+- Node.js 18.x or later
+- npm (comes with Node.js)
+- A modern web browser
+
+### Installation
+
+1. Clone the repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/yourusername/shoresquad.git
+cd shoresquad
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Create a `.env.local` file in the root directory and add your API keys:
+```env
+NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=your_google_maps_api_key
+```
+
+4. Start the development server:
+```bash
+npm run dev
+```
+
+5. Open [http://localhost:3000](http://localhost:3000) with your browser to see the application.
+
+### Weather API Integration
+
+The application uses Singapore's data.gov.sg API for weather forecasts. The weather component includes:
+
+- 4-day weather forecast
+- Temperature, humidity, and wind information
+- Auto-refresh every 30 minutes
+- Error handling with automatic retries
+- Responsive design for all screen sizes
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
