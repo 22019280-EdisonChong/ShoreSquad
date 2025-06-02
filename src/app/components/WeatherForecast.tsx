@@ -214,10 +214,9 @@ export default function WeatherForecast() {
 
   return (
     <div className="weather-section-container">
-      {/* Today's Weather Card */}
-      <div className="today-weather-card">
+      {/* Today's Weather Card */}      <div className="today-weather-card">
         {/* Line 220 was here previously, ensure this is ' */}
-        <h3>Today's Weather</h3> 
+        <h3>Today&apos;s Weather</h3> 
         <p className="current-condition-text">{todayForecast.forecast.summary}</p>
         <div className="current-weather-icon-temp">
           <i className={`fas ${getWeatherIcon(todayForecast.forecast.text)} weather-icon-large`}></i>
