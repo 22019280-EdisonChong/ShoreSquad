@@ -85,7 +85,13 @@ export default function WeatherForecast() {
               date: formattedDate,
               updatedTimestamp: new Date().toISOString(),
               timestamp: new Date().toISOString(),
-              forecasts: data.items[0].forecasts.map((f: any) => ({
+              forecasts: data.items[0].forecasts.map((f: { 
+                date: string;
+                temperature: { low: number; high: number };
+                relative_humidity: { low: number; high: number };
+                forecast: string;
+                wind: { speed: { low: number; high: number }; direction: string };
+              }) => ({
                 timestamp: f.date,
                 temperature: {
                   low: f.temperature.low,
